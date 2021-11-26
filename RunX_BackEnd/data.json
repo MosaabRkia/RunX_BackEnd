@@ -1,0 +1,89 @@
+[
+  {
+    "FirstName": "Mohamed",
+    "Email": "mohamedtest@gmail.com",
+    "Password": "11111111",
+    "Gender": "male",
+    "DateOfBirth": "2017-09-08T19:01:55.714942+03:00",
+    "Weights": [
+      {
+        "CurrentWeight": 65,
+        "Date": "2017-09-08T19:01:55.714942+03:00"
+      }
+    ],
+    "Heights": [
+      {
+        "CurrentHeight": 65,
+        "Date": "2017-09-08T19:01:55.714942+03:00"
+      }
+    ],
+    "Goal": "Gain",
+    "GoalWeight": 75,
+    "ChoosenFood": [
+      {
+        "Name": "whey",
+        "Kind": "dairy",
+        "MealTimes": [ { "MealId": 2 } ],
+        "KCal": 26,
+        "Gram": 100,
+        "Protein": 0.9,
+        "Fats": 0.4,
+        "Description": "gain muscle mass and strength",
+        "id": 157
+      },
+      {
+        "Name": "casein",
+        "Kind": "dairy",
+        "MealTimes": [ { "MealId": 0 } ],
+        "KCal": 365,
+        "Gram": 100,
+        "Protein": 77,
+        "Fats": 1.9,
+        "Description": "boost muscle growth and aid recovery after exercise",
+        "id": 158
+      },
+      {
+        "Name": "egg",
+        "Kind": "dairy",
+        "MealTimes": [ { "MealId": 1 } ],
+        "KCal": 155.1,
+        "Gram": 100,
+        "Protein": 13,
+        "Fats": 11,
+        "Description": "rich in the antioxidants lutein and zeaxanthin",
+        "id": 159
+      }
+    ],
+    "Meds": [],
+    "DailySteps": [
+      {
+        "Goal": 8000,
+        "Done": 0,
+        "Date": "2017-09-08T19:01:55.714942+03:00"
+      }
+    ],
+    "DailyWaterCups": [
+      {
+        "Goal": 15,
+        "Done": 5,
+        "Date": "2017-09-08T19:01:55.714942+03:00"
+      }
+    ],
+    "Sleeps": [
+      {
+        "Goal": 8,
+        "Done": 5,
+        "Date": "2017-09-08T19:01:55.714942+03:00"
+      }
+    ],
+    "KCalDaily": [
+      {
+        "Goal": 2000,
+        "Done": 1500,
+        "Date": "2017-09-08T19:01:55.714942+03:00"
+      }
+    ],
+    "Meals": []
+
+  }
+]

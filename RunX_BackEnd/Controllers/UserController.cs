@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
+using System.Threading.Tasks;
+using DataAccess.Context;
+using DataAccess.models;
+using DataAccess.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using RunX_BackEnd.JWT;
+using RunX_BackEnd.Models;
+
+namespace RunX_BackEnd.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserController : ControllerBase
+    {
+        readonly UserService _userService;
+        private readonly IJwtTokenManager _tokenManager;
+
+        public UserController(UserService userService,IJwtTokenManager jwtTokenManager)
+        {
+
+            _userService = userService;
+            _tokenManager = jwtTokenManager;
+        }
+
+        [HttpPost]
+        [Route("create")]
+        public IActionResult Post([FromBody] User user)
+        {
+            bool Sucessfully = _userService.CreateUser(user);
+
+            return Ok(Sucessfully);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("changePasswordVerify")]
+        public IActionResult changePassword([FromBody] resetPassword data)
+        {
+            bool Sucessfully = _userService.changepassword(_tokenManager.DeCode(data.token),data.password);
+
+            return Ok(Sucessfully);
+        }
+
+
+
+    }
+}
