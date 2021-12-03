@@ -41,6 +41,7 @@ namespace DataAccess.models
         public List<Protein> DailyProtein { get; set; }
         public List<KCal> KCalDaily { get; set; }
         public List<Meal> Meals { get; set; }
+        public PushNotifications notifications { get; set; }
 
     }
 }

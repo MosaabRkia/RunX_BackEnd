@@ -10,6 +10,7 @@ namespace DataAccess.Context
     {
         public RunXContext(DbContextOptions options) : base(options) { }
         public DbSet<User> User { get; set; }
+        public DbSet<PushNotifications> PushNotifications { get; set; }
         public DbSet<CupsOfWater> CupsOfWater { get; set; }
         public DbSet<FoodItem> FoodItem { get; set; }
         public DbSet<Height> Height { get; set; }
