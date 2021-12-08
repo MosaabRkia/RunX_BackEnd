@@ -37,11 +37,10 @@ namespace DataAccess.Services
 
       
         public List<User> getData(string email) {
-            //System.DateTime.Today() //.Where(x=>x.Date == System.DateTime.Today()))
             var temp = _context.User.Where(e=>e.Email == email)
-                //.Include(e => e.Heights)
+                .Include(e => e.Heights)
                 //.Include(e => e.DailyProtein)
-                //.Include(e=>e.ChoosenFood) get it every 24 hour to create new meals
+                //.Include(e=>e.ChoosenFood) //get it every 24 hour to create new meals
                 .Include(e => e.Weights)
                 .Include(e => e.DailyWaterCups)
                 .Include(e => e.DailySteps)
@@ -49,6 +48,7 @@ namespace DataAccess.Services
                 .Include(e => e.KCalDaily)
                 .Include(e => e.Meds).ThenInclude(e=>e.Times)
                      .Include(e => e.Meals).ThenInclude(e => e.ItemsList)
+                     .Include(e=>e.notifications)
                 .ToList();
             return temp;
         }
@@ -62,6 +62,8 @@ namespace DataAccess.Services
             userToCheckLogin.Password = password;
             return _context.SaveChanges() > 0;
         }
+
+       
 
 
 

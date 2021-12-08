@@ -87,7 +87,7 @@ namespace RunX_BackEnd
             }
 
             app.UseCors();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();

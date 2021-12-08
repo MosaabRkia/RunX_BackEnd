@@ -15,6 +15,8 @@ namespace DataAccess.models
         [Required]
         public DateTime Date { get; set; }
 
-      
+        [Required]
+        public int UserId { get; set; }
+
     }
 }

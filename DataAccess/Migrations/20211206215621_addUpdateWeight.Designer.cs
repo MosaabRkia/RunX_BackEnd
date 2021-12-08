@@ -4,14 +4,16 @@ using DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(RunXContext))]
-    partial class RunXContextModelSnapshot : ModelSnapshot
+    [Migration("20211206215621_addUpdateWeight")]
+    partial class addUpdateWeight
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,7 @@ namespace DataAccess.Migrations
                     b.Property<int>("Goal")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -151,7 +153,7 @@ namespace DataAccess.Migrations
                     b.Property<double>("Goal")
                         .HasColumnType("float");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -171,7 +173,7 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<bool>("eaten")
@@ -289,13 +291,13 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Done")
-                        .HasColumnType("float");
+                    b.Property<int>("Done")
+                        .HasColumnType("int");
 
-                    b.Property<double>("Goal")
-                        .HasColumnType("float");
+                    b.Property<int>("Goal")
+                        .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -321,7 +323,7 @@ namespace DataAccess.Migrations
                     b.Property<double>("Goal")
                         .HasColumnType("float");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -424,9 +426,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.models.User", null)
                         .WithMany("DailyWaterCups")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("DataAccess.models.FoodChoosen", b =>
@@ -451,18 +451,14 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.models.User", null)
                         .WithMany("KCalDaily")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("DataAccess.models.Meal", b =>
                 {
                     b.HasOne("DataAccess.models.User", null)
                         .WithMany("Meals")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("DataAccess.models.MealTime", b =>
@@ -492,18 +488,14 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.models.User", null)
                         .WithMany("Sleeps")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("DataAccess.models.Steps", b =>
                 {
                     b.HasOne("DataAccess.models.User", null)
                         .WithMany("DailySteps")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("DataAccess.models.Time", b =>

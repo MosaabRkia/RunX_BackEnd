@@ -10,12 +10,15 @@ namespace DataAccess.models
         public int Id { get; set; }
 
         [Required]
-        public int Goal { get; set; }
+        public double Goal { get; set; }
 
         [Required]
-        public int Done { get; set; }
+        public double Done { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
     }
 }

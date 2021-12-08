@@ -15,7 +15,11 @@ namespace DataAccess.models
         public DateTime Date { get; set; } 
         public List<FoodChoosen> ItemsList { get; set; }
 
+        [Required]
         public bool eaten { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
 
     }
 }

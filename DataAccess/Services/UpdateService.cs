@@ -97,5 +97,132 @@ namespace DataAccess.Services
                 return false;
             }
         }
+
+        public bool weightUpdate(int userId,double currentWeight)
+        {
+            try
+            {
+                _context.Weight.Add(new Weight { CurrentWeight = currentWeight,UserId = userId,Date = DateTime.Now });
+                return _context.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        public bool cupsOfWaterUpdate(CupsOfWater cupsObj)
+        {
+            try
+            {
+                _context.CupsOfWater.Add(cupsObj);
+                return _context.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool kCalUpdate(KCal kcalObj)
+        {
+            try
+            {
+                _context.KCal.Add(kcalObj);
+                return _context.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool stepsUpdate(Steps stepsObj)
+        {
+            try
+            {
+                _context.Steps.Add(stepsObj);
+                return _context.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool sleepsUpdate(Sleep sleepObj)
+        {
+            try
+            {
+                _context.Sleep.Add(sleepObj);
+                return _context.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        public bool mealsUpdate(Meal mealObj)
+        {
+            try
+            {
+                _context.Meal.Add(mealObj);
+                return _context.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<FoodChoosen> ChoosenFoodGetter(int id)
+        {
+            try
+            {
+                return _context.User.Where(e => e.Id == id).Select(p => p.ChoosenFood).FirstOrDefault();     
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public bool updateSteps(int steps, int stepsId)
+        {
+
+            try
+            {
+                var stepsToUpdate = _context.Steps.SingleOrDefault(e => e.Id == stepsId);
+                stepsToUpdate.Done = steps;
+                return _context.SaveChanges() > 0;
+            }
+            catch (System.Exception)
+            {
+
+                return false;
+            }
+
+
+
+        }
+
+        public bool updateSleep(double sleepTime, int sleepId)
+        {
+            try
+            {
+                var sleepToUpdate = _context.Sleep.SingleOrDefault(e => e.Id == sleepId);
+                sleepToUpdate.Done += sleepTime;
+                return _context.SaveChanges() > 0;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+
+
+
+        }
     }
 }
