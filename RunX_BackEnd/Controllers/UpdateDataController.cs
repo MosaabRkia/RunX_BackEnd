@@ -62,7 +62,7 @@ namespace RunX_BackEnd.Controllers
         public IActionResult updateWeight([FromBody] Weight weight)
         {
             //get id = 0 always and get userid and null time
-            bool checker = _updateService.weightUpdate(weight.UserId,weight.CurrentWeight);
+            bool checker = _updateService.weightUpdate(weight);
             if (checker) return Ok(true);
             else return BadRequest(false);
         }

@@ -98,11 +98,11 @@ namespace DataAccess.Services
             }
         }
 
-        public bool weightUpdate(int userId,double currentWeight)
+        public bool weightUpdate(Weight weight)
         {
             try
             {
-                _context.Weight.Add(new Weight { CurrentWeight = currentWeight,UserId = userId,Date = DateTime.Now });
+                _context.Weight.Add(weight);
                 return _context.SaveChanges() > 0;
             }
             catch
