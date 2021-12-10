@@ -49,9 +49,9 @@ namespace RunX_BackEnd.JWT
             {
                 Subject = new ClaimsIdentity(new Claim[] {
                     new Claim(ClaimTypes.NameIdentifier, email)
-                }),
-                Expires = DateTime.Now.AddMinutes(5),
-                SigningCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature)
+                }),   
+                SigningCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature),
+                Expires = DateTime.UtcNow.AddMinutes(5)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);

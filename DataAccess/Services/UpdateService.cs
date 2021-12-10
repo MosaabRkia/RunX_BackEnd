@@ -75,10 +75,12 @@ namespace DataAccess.Services
               
                 return true;
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
-            } 
+            }
+           
         }
 
         public bool removeMedicine(int id)

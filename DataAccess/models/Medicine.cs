@@ -18,7 +18,6 @@ namespace DataAccess.models
         public string Amount { get; set; }
         public List<Time> Times { get; set; }
         
-        [Required]
         public int UserId { get; set; }
     }
 }

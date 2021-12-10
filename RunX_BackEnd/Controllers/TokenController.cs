@@ -71,15 +71,6 @@ namespace RunX_BackEnd.Controllers
             else
                 return Ok(false);
         }
-        [HttpPost]
-        [Route("forgotPassword")]
-        public IActionResult forgotPasswordEmailMessage([FromBody] tokenHelper Email)
-        {
-            var token = _tokenManager.forgotPasswordAuth(Email.token);
-            bool sent = SendEmail(Email.token, "hello Dear \n We Detect that someone trying to reset your password for RunX App \n if that was you , please click the link and change password \n note: expires in 5 minutes " + $"https://forgotpasswordrunx.herokuapp.com/" + token);
-
-            return Ok(sent);
-        }
 
         public bool SendEmail(string email, string msg)
         {
@@ -108,6 +99,24 @@ namespace RunX_BackEnd.Controllers
                 return false;
             }
             return true;
+        }
+
+        [HttpPost]
+        [Route("forgotPassword")]
+        public IActionResult forgotPasswordEmailMessage([FromBody] tokenHelper Email)
+        {
+            try
+            {
+                var token = _tokenManager.forgotPasswordAuth(Email.token);
+                bool sent = SendEmail(Email.token, "hello Dear \n We Detect that someone trying to reset your password for RunX App \n if that was you , please click the link and change password \n note: expires in 5 minutes " + $"http://forgotpasswordrunx.herokuapp.com/" + token);
+
+                return Ok(sent);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
     }
