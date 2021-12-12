@@ -29,6 +29,8 @@ namespace DataAccess.Services
             _context.User.Add(user);
             return _context.SaveChanges() > 0;
         }
+
+
         public bool checkLogin(string email, string password)
         {
             var userToCheckLogin = _context.User.SingleOrDefault(e=> e.Email.Equals(email) && e.Password.Equals(password));
@@ -39,8 +41,6 @@ namespace DataAccess.Services
         public List<User> getData(string email) {
             var temp = _context.User.Where(e=>e.Email == email)
                 .Include(e => e.Heights)
-                //.Include(e => e.DailyProtein)
-                //.Include(e=>e.ChoosenFood) //get it every 24 hour to create new meals
                 .Include(e => e.Weights)
                 .Include(e => e.DailyWaterCups)
                 .Include(e => e.DailySteps)
@@ -64,7 +64,12 @@ namespace DataAccess.Services
         }
 
        
+        public bool checkEmail(string email)
+        {
 
+            var userToCheckEmail = _context.User.SingleOrDefault(e => e.Email.Equals(email));
+            return (userToCheckEmail == null ? false : true);
+        }
 
 
     }

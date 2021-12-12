@@ -33,6 +33,8 @@ namespace RunX_BackEnd.Controllers
         [Route("Authenticate")]
         public IActionResult Authenticate([FromBody] userCredntial user)
         {
+            try
+            {
             if (user.email == null || user.password == null)
                 return Ok(false);
 
@@ -46,6 +48,13 @@ namespace RunX_BackEnd.Controllers
             }
             return Ok(false);
 
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+
         }
 
         
@@ -53,11 +62,20 @@ namespace RunX_BackEnd.Controllers
         [Route("decode")]
         public IActionResult login([FromBody] tokenHelper token)
         {
+            try
+            {
             var email = _tokenManager.DeCode(token.token);
             if (email != "false")
                 return Ok(_userService.getData(email));
             else
                 return Ok(false);
+
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
         }
 
 
@@ -65,15 +83,25 @@ namespace RunX_BackEnd.Controllers
         [Route("decodeForgotPassword")]
         public IActionResult forgotPasswordDecode([FromBody] tokenHelper token)
         {
+            try
+            {
             var email = _tokenManager.DeCode(token.token);
             if (email != "false")
                 return Ok(true);
             else
                 return Ok(false);
+
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
         }
 
         public bool SendEmail(string email, string msg)
         {
+
             string from = "apprunx.officalMail@gmail.com"; //From address apprunx.officalMail@gmail.com  RunX1231231
             string to = email; //To address    
             MailMessage message = new MailMessage(from, to);
@@ -107,7 +135,7 @@ namespace RunX_BackEnd.Controllers
         {
             try
             {
-                var token = _tokenManager.forgotPasswordAuth(Email.token);
+                var token = _tokenManager.forgotPasswordAuth(Email.token);//get email in name token
                 bool sent = SendEmail(Email.token, "hello Dear \n We Detect that someone trying to reset your password for RunX App \n if that was you , please click the link and change password \n note: expires in 5 minutes " + $"http://forgotpasswordrunx.herokuapp.com/" + token);
 
                 return Ok(sent);

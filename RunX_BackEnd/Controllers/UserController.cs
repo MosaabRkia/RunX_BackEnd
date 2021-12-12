@@ -32,9 +32,18 @@ namespace RunX_BackEnd.Controllers
         [Route("create")]
         public IActionResult Post([FromBody] User user)
         {
+            try
+            {
             bool Sucessfully = _userService.CreateUser(user);
 
             return Ok(Sucessfully);
+
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
         }
 
         [Authorize]
@@ -42,9 +51,37 @@ namespace RunX_BackEnd.Controllers
         [Route("changePasswordVerify")]
         public IActionResult changePassword([FromBody] resetPassword data)
         {
+            try
+            {
             bool Sucessfully = _userService.changepassword(_tokenManager.DeCode(data.token),data.password);
 
             return Ok(Sucessfully);
+
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+     
+        [HttpGet]
+        [Route("checkEmail/{email}")]
+        public IActionResult changePassword(string email)
+        {
+            try
+            {
+         bool Sucessfully = _userService.checkEmail(email);
+
+                    return Ok(Sucessfully);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+           
         }
 
 

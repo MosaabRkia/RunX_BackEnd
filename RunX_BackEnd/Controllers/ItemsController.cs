@@ -23,7 +23,16 @@ namespace RunX_BackEnd.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            try
+            {
+
             return Ok(_itemsService.Get());
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
 
         }
 
@@ -31,16 +40,20 @@ namespace RunX_BackEnd.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
+            try
+            {
             return Ok(_itemsService.Get(id));
+
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
 
         }
 
-      /*  [HttpGet]
-        [Route("setItems")]
-        public IActionResult setItems()
-        {
-            return Ok(_itemsService.addItems());
-        }*/
+
 
        
 
